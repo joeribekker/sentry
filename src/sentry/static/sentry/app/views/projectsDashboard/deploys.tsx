@@ -110,7 +110,7 @@ const Environment = styled(TextOverflow)`
   font-size: ${p => p.theme.fontSizeExtraSmall};
   text-transform: uppercase;
   width: 80px;
-  border: 1px solid ${p => p.theme.borderLight};
+  border: 1px solid ${p => p.theme.border};
   margin-right: ${space(1)};
   background-color: ${p => p.theme.gray100};
   text-align: center;

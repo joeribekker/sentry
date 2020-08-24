@@ -56,18 +56,6 @@ const colors = {
   pink300: '#FF99BC',
   pink400: '#E1567C',
   pink500: '#902D4C',
-
-  get borderLighter() {
-    return colors.gray100;
-  },
-
-  get borderLight() {
-    return colors.gray300;
-  },
-
-  get borderDark() {
-    return colors.gray400;
-  },
 } as const;
 
 const aliases = {
@@ -89,12 +77,12 @@ const aliases = {
   /**
    * A color that denotes an error, or something that is wrong
    */
-  error: colors.red400, // TODO(dark): colors.300,
+  error: colors.red400, // TODO(dark): colors.red300,
 
   /**
    * Primary border color
    */
-  border: colors.gray200,
+  border: colors.gray400, // TODO(dark): colors.gray200,
 
   /**
    * A color that indicates something is disabled where user can not interact or use
@@ -180,7 +168,7 @@ const alert = {
   muted: {
     background: colors.gray400,
     backgroundLight: colors.gray100,
-    border: colors.borderDark,
+    border: colors.border,
     iconColor: 'inherit',
   },
   info: {
