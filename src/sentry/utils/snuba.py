@@ -628,8 +628,6 @@ def bulk_raw_query(snuba_param_list, referrer=None):
     for response, _, reverse in query_results:
         try:
             body = json.loads(response.data)
-            print("sql", body.get("sql"))
-            # print("error", body.get("error"))
         except ValueError:
             if response.status != 200:
                 logger.error("snuba.query.invalid-json")
