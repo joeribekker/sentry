@@ -19,7 +19,7 @@ jobs:
         - name: Dispatch getsentry tests
           uses: actions/github-script@v3
           with:
-            token: ${{ steps.getsentry.outputs.token }}
+            github-token: ${{ steps.getsentry.outputs.token }}
             script: |
               github.actions.createWorkflowDispatch({
                 owner: 'getsentry',
