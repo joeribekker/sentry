@@ -98,7 +98,7 @@ jobs:
       steps:
         # Notify getsentry
         - name: Start getsentry tests
-        - uses: actions/github-script@v3
+          uses: actions/github-script@v3
           with:
             github-token: ${{ secrets.GITHUB_TOKEN }}
             script: |
