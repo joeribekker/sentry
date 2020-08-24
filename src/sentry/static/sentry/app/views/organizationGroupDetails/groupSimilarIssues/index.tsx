@@ -20,7 +20,7 @@ const GroupSimilarIssues = ({
   ...props
 }: Props) => (
   <React.Fragment>
-    <Feature features={['similarity-view']} project={project} organization={organization}>
+    <Feature features={['similarity-view']} project={project}>
       <SimilarStackTrace
         project={project}
         location={location}
@@ -29,7 +29,9 @@ const GroupSimilarIssues = ({
         {...props}
       />
     </Feature>
-    <SimilarTraceID event={event} organization={organization} location={location} />
+    <Feature features={['related-events']} organization={organization}>
+      <SimilarTraceID event={event} organization={organization} location={location} />
+    </Feature>
   </React.Fragment>
 );
 

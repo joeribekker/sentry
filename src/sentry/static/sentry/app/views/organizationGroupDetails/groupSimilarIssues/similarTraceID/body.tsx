@@ -21,7 +21,7 @@ type Props = {
   traceID?: string;
 };
 
-const Body = ({traceID, organization, location}: Props) => {
+const Body = ({traceID, organization, event, location}: Props) => {
   if (!traceID) {
     return (
       <EmptyState
@@ -36,6 +36,7 @@ const Body = ({traceID, organization, location}: Props) => {
 
   const getIssuesEndpoint = () => {
     const queryParams = {
+      limit: 5,
       sort: 'new',
       ...pick(location.query, [...Object.values(URL_PARAM), 'cursor']),
     };
@@ -43,7 +44,9 @@ const Body = ({traceID, organization, location}: Props) => {
       path: `/organizations/${orgSlug}/issues/`,
       queryParams: {
         ...queryParams,
-        query: stringifyQueryObject(new QueryResults([`trace:${traceID}`])),
+        query: stringifyQueryObject(
+          new QueryResults([`trace:${traceID}`, `!id:${event.id}`])
+        ),
       },
     };
   };
@@ -81,7 +84,6 @@ const Body = ({traceID, organization, location}: Props) => {
         renderEmptyMessage={renderEmptyMessage}
         canSelectGroups={false}
         withChart={false}
-        withPagination={false}
       />
     </TableWrapper>
   );

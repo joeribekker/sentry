@@ -87,6 +87,7 @@ class GroupDetails extends React.Component<Props, State> {
   }
 
   componentWillUnmount() {
+    GroupStore.reset();
     callIfFunction(this.listener);
   }
 
@@ -293,14 +294,14 @@ class GroupDetails extends React.Component<Props, State> {
 
     const activeTab = this.getCurrentTab();
 
-    let childProps: Record<string, any> = {environments, group, project};
+    let childProps: Record<string, any> = {environments, group, project, organization};
 
     if (activeTab === TAB.DETAILS) {
       childProps = {...childProps, event};
     }
 
     if (activeTab === TAB.SIMILAR_ISSUES) {
-      childProps = {...childProps, event, organization, location};
+      childProps = {...childProps, event, location};
     }
 
     return (

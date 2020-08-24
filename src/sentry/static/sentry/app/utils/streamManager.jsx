@@ -11,6 +11,7 @@ class StreamManager {
   // items that are removed there
   constructor(store, options = {}) {
     this.idList = [];
+    this.previousItems = store.getAllItems();
     this.store = store;
     this.limit = options.limit || 1000;
   }
@@ -42,6 +43,20 @@ class StreamManager {
       .getAllItems()
       .slice()
       .sort((a, b) => this.idList.indexOf(a.id) - this.idList.indexOf(b.id));
+  }
+
+  getAllIdListItems() {
+    return this.getAllItems().filter(item => this.idList.includes(item.id));
+  }
+
+  removeAllIdListItems() {
+    const removeItems = this.getAllIdListItems().filter(
+      item => !this.previousItems.find(previoudItem => previoudItem.id === item.id)
+    );
+
+    for (let i = 0; i < removeItems.length; i++) {
+      this.store.remove(removeItems[i].id);
+    }
   }
 
   unshift(items = []) {

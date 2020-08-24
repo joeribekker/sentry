@@ -99,11 +99,10 @@ const GroupList = createReactClass<Props, State>({
   },
 
   componentWillUnmount() {
-    GroupStore.loadInitialData([]);
+    this._streamManager.removeAllIdListItems();
   },
 
   fetchData() {
-    GroupStore.loadInitialData([]);
     const {api, orgId} = this.props;
 
     this.setState({
@@ -172,8 +171,7 @@ const GroupList = createReactClass<Props, State>({
   },
 
   onGroupChange() {
-    const groups = this._streamManager.getAllItems();
-
+    const groups = this._streamManager.getAllIdListItems();
     if (!isEqual(groups, this.state.groups)) {
       this.setState({
         groups,
